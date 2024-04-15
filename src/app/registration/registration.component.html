@@ -1,0 +1,43 @@
+
+<div class="login-container">
+  <div class="login-card">
+    <h2>Signup</h2>
+    <form (ngSubmit)="signup()" #sign="ngForm" novalidate>
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="names" [(ngModel)]="formData.name" placeholder="Enter your Name" required names #names="ngModel">
+     <div *ngIf="names.invalid && (names.dirty || names.touched)" class="error-message">
+          <div *ngIf="names.errors && names.errors['required']" style="color:red">Name is required.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="formData.email" placeholder="Enter your email" required email #email="ngModel">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+          <div *ngIf="email.errors && email.errors['required']" style="color:red">Email is required.</div>
+          <div *ngIf="email.errors && email.errors['email']" style="color: red">Invalid email format.</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="formData.password"  placeholder="Enter your password" required password #password="ngModel">
+     <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors && password.errors['required']" style="color:red">Password is required.</div>
+          <div *ngIf="password.errors && password.errors['minlength']" style="color: red;">Password must be at least 6 characters long.</div>
+
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone no:</label>
+        <input type="number" id="phone" name="phone" [(ngModel)]="formData.phoneNo"  placeholder="Enter your phone number" required phoneNo #phoneNo="ngModel">
+      <div *ngIf="phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)" class="error-message">
+          <div *ngIf="phoneNo.errors && phoneNo.errors['required']" style="color:red">Phone No is required.</div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="sign.invalid">Submit</button>
+    </form>
+      <p class="text-center m-1">OR</p>
+      <button routerLink="/login">Login</button>
+  </div>
+</div>

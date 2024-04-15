@@ -1,0 +1,21 @@
+<div class="background-image"></div>
+<div class="prayer-request-container">
+  <h2>Submit Your Prayer Request</h2>
+  <form (ngSubmit)="submitPrayerRequest()" #prayerForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="name">Request for</label>
+      <input type="text" id="name" name="name" [(ngModel)]="prayerRequest.requestFor" required>
+      <div *ngIf="prayerForm.controls['name'].invalid && (prayerForm.controls['name'].dirty || prayerForm.controls['name'].touched)">
+        <div *ngIf="prayerForm.controls['name'].errors?.['required']" style="color:red">Name is required</div>
+      </div>
+    </div>    
+    <div class="form-group">
+      <label for="request">Prayer Request:</label>
+      <textarea id="request" name="request" [(ngModel)]="prayerRequest.prayerRequest" required></textarea>
+      <div *ngIf="prayerForm.controls['request'].invalid && (prayerForm.controls['request'].dirty || prayerForm.controls['request'].touched)">
+        <div *ngIf="prayerForm.controls['request'].errors?.['required']" style="color:red">Prayer request is required</div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="prayerForm.invalid">Submit</button>
+  </form>
+</div>

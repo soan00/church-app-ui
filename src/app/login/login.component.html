@@ -1,0 +1,29 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="loginData.emailId" 
+               placeholder="Enter your email" required email #email="ngModel">
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+          <div *ngIf="email.errors && email.errors['required']" style="color:red">Email is required.</div>
+          <div *ngIf="email.errors && email.errors['email']" style="color: red">Invalid email format.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="loginData.password" 
+               placeholder="Enter your password" required minlength="6" #password="ngModel">
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+          <div *ngIf="password.errors && password.errors['required']" style="color: red;">Password is required.</div>
+          <div *ngIf="password.errors && password.errors['minlength']" style="color: red;">Password must be at least 6 characters long.</div>
+        </div>
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+    <div m-2 p-1>
+      <p>Don't have an Account? <button routerLink="/signup">Sign up</button></p>
+    </div>
+  </div>
+</div>
