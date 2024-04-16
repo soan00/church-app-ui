@@ -6,6 +6,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { SignUpData } from './models/signup';
 import { jwtDecode } from 'jwt-decode';
 import { PrayerRequest } from './models/prayerRequest';
+import { MeetingData } from './models/meeting';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,12 @@ export class ServiceService {
   }
   postPrayerRequest(data: PrayerRequest): Observable<PrayerRequest> {
     return this.http.post<PrayerRequest>(`${this.URL}/Home/postPrayer`, data, this.httpOptions)
+  }
+  getAllMeetings(): Observable<any> {
+    return this.http.get<any>(`${this.URL}/Home/getAllMeetings`, this.httpOptions);
+  }
+  postMeeting(data: MeetingData): Observable<MeetingData> {
+    return this.http.post<MeetingData>(`${this.URL}/Home/postMeeting`, data, this.httpOptions);
   }
   showSpinner() {
     this.spinner.show();

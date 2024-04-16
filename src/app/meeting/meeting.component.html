@@ -1,1 +1,39 @@
-<p>meeting works!</p>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Meeting Details</div>
+        <div class="card-body">
+          <form #meetingForm="ngForm" (ngSubmit)="submitForm()">
+            <div class="mb-3">
+              <label for="title" class="form-label">Title</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required
+                     [(ngModel)]="meeting.name">
+            </div>
+            <div class="mb-3">
+              <label for="location" class="form-label">Location</label>
+              <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" required
+                     [(ngModel)]="meeting.location">
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input type="date" class="form-control" id="date" name="date" required
+                     [(ngModel)]="meeting.date">
+            </div>
+            <div class="mb-3">
+              <label for="startTime" class="form-label">Start Time</label>
+              <input type="time" class="form-control" id="startTime" name="startTime" required
+                     [(ngModel)]="meeting.startTime">
+            </div>
+            <div class="mb-3">
+              <label for="endTime" class="form-label">End Time</label>
+              <input type="time" class="form-control" id="endTime" name="endTime" required
+                     [(ngModel)]="meeting.endTime">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

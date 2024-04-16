@@ -1,0 +1,36 @@
+/* Table Styles */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font-weight: bold;
+}
+
+/* Conditional Message Styles */
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8d7da;
+  color: #721c24;
+  margin-top: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 767.98px) {
+  .table th,
+  .table td {
+    padding: 5px;
+  }
+}
