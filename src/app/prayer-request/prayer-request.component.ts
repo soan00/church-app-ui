@@ -15,8 +15,11 @@ import { ToastrService } from 'ngx-toastr';
 export class PrayerRequestComponent implements OnInit {
   constructor(private http: ServiceService, private tost: ToastrService) { }
   emailId: string = "";
+  prayer: any;
+  role: number = parseInt(localStorage.getItem("role") ?? "0");
   ngOnInit(): void {
     this.emailId = this.http.getEmailIdFromToken();
+    this.getPrayer();
   }
   prayerRequest: PrayerRequest = { prayerRequest: "", emailId: this.emailId, requestFor: "", message: "" };
   submitPrayerRequest() {
@@ -35,6 +38,18 @@ export class PrayerRequestComponent implements OnInit {
       complete: () => {
         this.http.hideSpinner();
       }
+    })
+  }
+  getPrayer() {
+    this.http.showSpinner();
+    this.http.getPrayerRequest().subscribe({
+      next: (res) => {
+        this.prayer = res;
+        this.http.hideSpinner();
+      }, error: (err) => {
+        this.http.hideSpinner();
+        console.log(err);
+      }, complete: () => this.http.hideSpinner()
     })
   }
 }

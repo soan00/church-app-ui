@@ -1,21 +1,44 @@
 <div class="background-image"></div>
-<div class="prayer-request-container">
+<div class="prayer-request-container" *ngIf="role===2">
   <h2>Submit Your Prayer Request</h2>
   <form (ngSubmit)="submitPrayerRequest()" #prayerForm="ngForm" novalidate>
     <div class="form-group">
       <label for="name">Request for</label>
-      <input type="text" id="name" name="name" [(ngModel)]="prayerRequest.requestFor" required>
-      <div *ngIf="prayerForm.controls['name'].invalid && (prayerForm.controls['name'].dirty || prayerForm.controls['name'].touched)">
-        <div *ngIf="prayerForm.controls['name'].errors?.['required']" style="color:red">Name is required</div>
+      <input type="text" id="name" name="name" [(ngModel)]="prayerRequest.requestFor" required #name="ngModel">
+      <div *ngIf="name.invalid && (name.dirty || name.touched)">
+        <div *ngIf="name.errors?.['required']" style="color:red">Name is required</div>
       </div>
     </div>    
     <div class="form-group">
       <label for="request">Prayer Request:</label>
-      <textarea id="request" name="request" [(ngModel)]="prayerRequest.prayerRequest" required></textarea>
-      <div *ngIf="prayerForm.controls['request'].invalid && (prayerForm.controls['request'].dirty || prayerForm.controls['request'].touched)">
-        <div *ngIf="prayerForm.controls['request'].errors?.['required']" style="color:red">Prayer request is required</div>
+      <textarea id="request" name="request" [(ngModel)]="prayerRequest.prayerRequest" required #request="ngModel"></textarea>
+      <div *ngIf="request.invalid && (request.dirty || request.touched)">
+        <div *ngIf="request.errors?.['required']" style="color:red">Prayer request is required</div>
       </div>
     </div>
     <button type="submit" [disabled]="prayerForm.invalid">Submit</button>
   </form>
 </div>
+<div class="container mt-4" *ngIf="role===1">
+  <h1>Prayer Request</h1>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Prayer request</th>
+        <th>Request for</th>
+        <th>User name</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of prayer">
+        <td>{{data.prayerRequest}}</td>
+        <td>{{data.requestFor}}</td>
+        <td>{{data.users.name}}</td>
+        <td>{{data.users.phoneNo}}</td>
+      </tr>
+    
+    </tbody>
+  </table>
+</div>
+

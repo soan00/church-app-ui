@@ -38,6 +38,9 @@ export class ServiceService {
   postMeeting(data: MeetingData): Observable<MeetingData> {
     return this.http.post<MeetingData>(`${this.URL}/Home/postMeeting`, data, this.httpOptions);
   }
+  getPrayerRequest(): Observable<any> {
+    return this.http.get<any>(`${this.URL}/Home/getPrayer`, this.httpOptions);
+  }
   showSpinner() {
     this.spinner.show();
   }

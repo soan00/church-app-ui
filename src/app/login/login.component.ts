@@ -18,7 +18,8 @@ export class LoginComponent implements OnInit {
   loginData: LoginData = {
     emailId: '',
     password: '',
-    token: ''
+    token: '',
+    role: 0
   }
   toke: any = ''
   constructor(private service: ServiceService, private tost: ToastrService, private rout: Router) {
@@ -26,8 +27,10 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit(): void {
     this.toke = localStorage.getItem("token");
-    if (this.toke == '')
+    if (this.toke == '' || this.toke == undefined)
       this.rout.navigate(["/login"]);
+    else
+      this.rout.navigate(['/home']);
   }
 
 
@@ -36,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.service.login(this.loginData).subscribe({
       next: (res) => {
         localStorage.setItem("token", res.token)
+        localStorage.setItem("role", res.role.toString())
         this.tost.success("Login Success!");
         this.rout.navigate(["/home"]);
       }, error: (err) => { this.service.hideSpinner(); this.tost.error("Login Fail!"); this.rout.navigate(["/login"]); console.log("login fails", err); },

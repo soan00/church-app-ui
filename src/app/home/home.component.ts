@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NevComponent } from '../nev/nev.component';
 import { Router, RouterOutlet } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
-import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +13,7 @@ import { ServiceService } from '../service.service';
 export class HomeComponent implements OnInit {
   token: any = ""
   meetingDetails: any;
+  role: number = 0;
   constructor(private rout: Router) { }
   ngOnInit(): void {
     this.token = localStorage.getItem("token");
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
       this.rout.navigate(["/login"]);
     const email: any = jwtDecode(this.token);
     console.log(email?.nameid);
+    this.role = parseInt(localStorage.getItem("role") ?? "0");
   }
 
 }

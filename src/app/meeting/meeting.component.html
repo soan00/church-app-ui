@@ -1,5 +1,6 @@
 <div class="container mt-4">
-  <div class="row justify-content-center">
+  <div class="row justify-content-between">
+    <!-- Left column for the form -->
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">Meeting Details</div>
@@ -34,6 +35,36 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> 
+
+    <!-- Right column for the table -->
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Meetings</div>
+        <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let meeting of meetingDetails">
+              <td>{{ meeting.name }}</td>
+              <td>{{ meeting.date }}</td>
+              <td>{{ meeting.location }}</td>
+              <td>{{ meeting.startTime }}</td>
+              <td>{{ meeting.endTime }}</td>
+              <!-- Add more cells as needed -->
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>   
   </div>
 </div>
